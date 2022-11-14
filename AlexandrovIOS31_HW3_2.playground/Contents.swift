@@ -29,7 +29,7 @@ var chessmans: Chessman = [:]
 chessmans.updateValue(("H", 5), forKey: "White_king")
 chessmans.updateValue(("A", 4), forKey: "Black_queen")
 chessmans.updateValue((nil), forKey: "Black_pawn")
-var key: String = "Black_queen"
+var key: String = "Black_pawn"
 if let info = chessmans[key]! {
     print("Фигура \(key) стоит на координатах \(info.alpha)-\(info.num)")
 } else {
