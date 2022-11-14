@@ -16,9 +16,9 @@ print("Список студентов в алфавитном порядке: \
 
 
 // Задание 3:
-var A: [Int] = [5, 3, 1, 4, -2, -4, 2, -1, 0]
-A.sort(by: {$1 < $0})
-var filtredA = A.filter({$0 > 0})
+var arrayA: [Int] = [5, 3, 1, 4, -2, -4, 2, -1, 0]
+arrayA.sort(by: {$1 < $0})
+var filtredA = arrayA.filter({$0 > 0})
 print("Отфильтрованный список: \(filtredA)")
 
 
