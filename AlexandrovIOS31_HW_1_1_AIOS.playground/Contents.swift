@@ -1,53 +1,62 @@
-//protocol Flying {
-//    func fly(from: String, to: String)
-//}
-//
-//protocol Carrier {
-//    func load()
-//    func refuel()
-//}
-//
-//class Bird: Flying {
-//    func fly(from: String, to: String) {}
-//}
-//
-//class Airplane: Flying, Carrier {
-//
-//    func fly(from: String, to: String) {}
-//    func load() {}
-//    func refuel() {}
-//}
-
-//Задача 1
-//Абстракция
-//Инкапсуляция
-//Наследование
-//Полиморфизм
-protocol Instruments {
-    func fly(from: String, to: String)
+/*
+ Классов бесконечное количество: Вселенные (если теория о мультивселенной верна), звезды, планеты, страны, животные, техника, хороший виски - это класс!
+ Абстракций тоже бесконечно много: Черная дыра - идеальная абстракция, абстракция полета - не важно кто летит - птица, самолет или Супермэн, компьютер - для многих абстракция
+ Объект - это все вокруг, на что не посмотри - это объект относящийся к какому-то классу или абстракции, все мы - объекты человечества, пишу ЭТО я на объекте MacBook Pro, запивая замечательным 12 летним виски - он тоже объект, но какой - это секрет xD
+ Свойствами объектов являются характеристики - расса, пол, возраст - для человека, мощь процессора и видеочипа - для ПК
+ Методы - это то, как мы взаимодействуем с объектами на ПК можно работать, играть или залипнуть на ютубе) с человеком можно общаться (но не всегда хочется) или совместно выносить приговор той самой бутылочке виски (но не сегодня)
+ Инкапсуляция - это внутренние процессы объекта, про которые стороннему пользователью знать не обязательно - вот ползет робот-пылесос - это отличный пример инкапсуляции - он делает свое дело и не суть важно как он это делает, главное в доме чисто, ну а как там внутри ноутбука все работает - подавляющему числу людей вообще без разницы - ну и пусть это останется на их совести
+ Наследование - это передача свойств и методов - холодильник остужает и замораживает продукты - температура - это наследование, телефоны с момента изобретения до наших дней наследуют функцию "Звонить"
+ Полиморфизм - все пьют, кто то воду, кто то чай, кто то кофе, мы готовим ужин - у каждого свой
+*/
+class PersonalComputer
+{
+    var motherboard: String
+    var processor: String
+    var RAM: String
+    var videoCard: String
+    var SSD: String
+    var power: String
+    var monitor: String
+    
+    init
+    (
+        _ motherboard: String,
+        _ processor: String,
+        _ RAM: String,
+        _ videoCard: String,
+        _ SSD: String,
+        _ power: String,
+        _ monitor: String
+    )
+    {
+        self.motherboard = motherboard
+        self.processor = processor
+        self.RAM = RAM
+        self.videoCard = videoCard
+        self.SSD = SSD
+        self.power = power
+        self.monitor = monitor
+    }
+    
+    func powerOn(_ type: Bool) -> String {
+        return power
+    }
+    func input(_ type: String) -> String {
+        return power
+    }
+    func output(_ type: String) -> String {
+        return power
+    }
 }
 
-protocol Band {
-    func load()
-    func refuel()
+protocol noteBook: PersonalComputer {
+    init
+    (
+        _ processor: String,
+        _ RAM: String,
+        _ videoCard: String,
+        _ SSD: String
+    )
 }
 
-class Bird: Flying {
-    func fly(from: String, to: String) {}
-}
-
-class Airplane: Flying, Carrier {
-
-    func fly(from: String, to: String) {}
-    func load() {}
-    func refuel() {}
-}
-
-
-
-//Задача 2
-//Класс
-// Класс - Холодильник
-//Объект
-//Свойства объектов
-//Методы
+let somePC = PersonalComputer ("ASUS", "Intel_i9", "32Gb", "RTX4090", "M.2 2Tb", "1.5W", "2K")
