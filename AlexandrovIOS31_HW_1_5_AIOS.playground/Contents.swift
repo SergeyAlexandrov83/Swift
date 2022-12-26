@@ -19,7 +19,11 @@ struct Tracks: Equatable {
 }
 
 // Задание 2
-class Category {
+class Category: Equatable {
+    static func == (lhs: Category, rhs: Category) -> Bool {
+        return lhs.tracksList == rhs.tracksList
+    }
+    
     let categoryName: String
     lazy var tracksList: [Tracks] = []
     var tracksCount: Int {
@@ -63,6 +67,12 @@ class Library {
         }
         categoryToMove.add(track: track)
     }
+    
+    func delete(_ cat: Category) {
+        if let index = categoryList.firstIndex(where: {$0 == cat}) {
+            categoryList.remove(at: index)
+        }
+    }
 }
 
 
@@ -86,3 +96,6 @@ metal.tracksList
 library.transfer(track: track1, categoryToMove: rock)
 rock.tracksList
 metal.tracksList
+library.categoryList
+library.delete(metal)
+library.categoryList
