@@ -61,7 +61,9 @@ let oneKM = 30
 let oneMin = 40
 let driveDist = 18
 let driveTime = 26
-print("Стоимость поездки равна \(driveDist * oneKM > driveTime * oneMin ? driveDist * oneKM : driveTime * oneMin)! Поставьте 5 звезд!")
+let priceByDist = oneKM * driveDist
+let priceByTime = oneMin * driveTime
+print("Стоимость поездки равна \(priceByDist > priceByTime ? priceByDist : priceByTime)! Поставьте 5 звезд!")
 
 // Задача 8
 // Билет в аквапарк стоит 700 рублей за 2 часа и 1100 за 4 часа. Опоздание оплачивается отдельно из расчёта 100 рублей за каждые 10 минут. Дано количество минут, которое посетитель провёл в аквапарке (от 120 до 240). Найдите наименьшую стоимость, которую он заплатит за посещение аквапарка.
@@ -72,7 +74,8 @@ let aquaTime = 160
 if aquaTime < 120 || aquaTime > 240 {
     print("Введены некорректные данные!")
 } else {
-    let bill = aquaTime < 130 ? twoHoursTicket : aquaTime > 160 ? fourHoursTicket : (aquaTime - 120) / 10 * tenMinutesPrice + twoHoursTicket
+    let clearBill = (aquaTime - 120) / 10 * tenMinutesPrice + twoHoursTicket
+    let bill = aquaTime < 130 ? twoHoursTicket : aquaTime > 160 ? fourHoursTicket : clearBill
     print("На кассу \(bill)")
 }
 
