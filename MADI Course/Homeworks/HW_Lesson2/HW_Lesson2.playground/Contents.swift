@@ -65,15 +65,32 @@ print("Стоимость поездки равна \(driveDist * oneKM > driveT
 
 // Задача 8
 // Билет в аквапарк стоит 700 рублей за 2 часа и 1100 за 4 часа. Опоздание оплачивается отдельно из расчёта 100 рублей за каждые 10 минут. Дано количество минут, которое посетитель провёл в аквапарке (от 120 до 240). Найдите наименьшую стоимость, которую он заплатит за посещение аквапарка.
-
-
+let twoHoursTicket = 700
+let fourHoursTicket = 1100
+let tenMinutesPrice = 100
+let aquaTime = 160
+if aquaTime < 120 || aquaTime > 240 {
+    print("Введены некорректные данные!")
+} else {
+    let bill = aquaTime < 130 ? twoHoursTicket : aquaTime > 160 ? fourHoursTicket : (aquaTime - 120) / 10 * tenMinutesPrice + twoHoursTicket
+    print("На кассу \(bill)")
+}
 
 // Задача 9
 // Пирожок в столовой стоит a рублей и b копеек. Определите, сколько рублей и копеек нужно заплатить за n пирожков.
-
-
-
-
+let pirojokCount = 12 // n
+let rubPrice = 15 // a
+let kopPrice = 30 // b
+let totalKopBill = kopPrice * pirojokCount % 100
+let totalRubBill = rubPrice * pirojokCount + kopPrice * pirojokCount / 100
+print("Школа стала богаче на \(totalRubBill) руб \(totalKopBill) коп")
 
 // Задача 10
 // Даны значения двух моментов времени, принадлежащих одним и тем же суткам: часы, минуты и секунды для каждого из моментов времени. Известно, что второй момент времени наступил не раньше первого. Определите, сколько часов, минут и секунд прошло между двумя моментами времени.
+let firstHours = 7
+let firstMins = 15
+let firstSec = 34
+let secondHours = 23
+let secondMins = 46
+let secondSec = 59
+print("Разница составляет \(secondHours - firstHours)ч \(secondMins - firstMins)м \(secondSec - firstSec)с")
