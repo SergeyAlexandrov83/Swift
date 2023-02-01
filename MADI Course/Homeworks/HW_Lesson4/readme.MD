@@ -2,41 +2,9 @@
 
 //2 Список продуктов, которые нужны для приготовления борща, представлен множеством borshProducts. Список имеющихся продуктов представлен множеством haveProducts. Требуется вывести список продуктов, которые нужно купить для приготовления борща.
 
-var borshProducts: Set = ["Свекла",
-                          "Картошка",
-                          "Морковь",
-                          "Говядина",
-                          "Вода"]
-
-
-var haveProducts: Set = ["Картошка", "Вода", "Молоко", "Сметана"]
-
-borshProducts.subtract(haveProducts)
-print(borshProducts)
-
 //3. Ваcя живёт в квартире в центре Екатеринбурга. Дом, в котором находится его квартира, обслуживает несколько интернет-провайдеров. Ваня планирует переселиться в другой дом, который обслуживают другие провайдеры. Некоторые из провайдеров обслуживают оба дома.  Задача - проверить, к каким из провайдеров Ваня должен подключиться, чтобы после переезда не пришлось менять провайдера?
 
-var firstProviders: Set = ["Beeline", "MTS", "Akado", "Dom.ru", "OnLime"]
-var secondProviders: Set = ["Beeline", "MTS", "RTK", "Stream", "Karbina", "OnLime"]
-
-var interProviders = firstProviders.intersection(secondProviders)
-
-print(firstProviders)
-print(interProviders)
-let sortedProviders = interProviders.sorted()
-let longSortedProviders = interProviders.sorted { first, last in
-    first.count < last.count
-}
-print(longSortedProviders)
-
 //4. Алина посетила два разных курса по веб-разработке. В каждом из курсов есть свой перечень тем для изучения. Некоторые темы могут повторяться. Задача - вывести полный перечень, который Алина освоила на обоих курсах.
-
-let firstThemes: Set = ["HTML", "CSS", "Python", "Django"]
-
-let secondThemes: Set = ["HTML", "CSS", "PHP", "YII2"]
-
-let generalThemes = firstThemes.union(secondThemes)
-print(generalThemes)
 
 //5. Создать словарь Животных типа [String: Int], где ключ - Название животного, а значение - его вес в килограммах. Проверить, способен ли человек поднять одно из животных, имеющихся в словаре (порог поднятия считать равным 80 кг). Результат распечатать в консоль в виде: «Курица весит 3 кг. Я могу её поднять» или «Слон весит 1500 кг. Он слишком тяжёлый для меня»
 
