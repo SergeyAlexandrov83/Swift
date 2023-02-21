@@ -149,7 +149,7 @@ class CoffeMachine {
     }
     private func coffeCupsCounter() {
         resurseDone += 1
-        if resurseLeft >= resurse {
+        if resurseDone >= resurse {
             print("Требуется сервисное обслуживание!")
         } else {
             print("Вы приготовили \(resurseDone) из \(resurse) гарантированных кружек кофе")
@@ -168,7 +168,7 @@ class CoffeMachine {
     }
 }
 
-let bork = CoffeMachine(mark: "Bork", power: 1800, resurse: 350, resurseDone: 0)
+let bork = CoffeMachine(mark: "Bork", power: 1800, resurse: 350, resurseDone: 350)
 bork.makeCoffe()
 bork.makeCoffe()
 bork.servise()
