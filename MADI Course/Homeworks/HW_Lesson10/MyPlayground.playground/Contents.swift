@@ -14,6 +14,7 @@ struct Food {
 //Создайте структуру «Позиция в заказе» со свойствами Блюдо, и вычисляемым свойством сумма записи.
 struct posInOrder {
     var food: Food
+    var count: Int
     var orderSum: Int { food.price }
 }
 //Создайте класс Официант.
@@ -46,16 +47,8 @@ class garson {
     }
 //Подытожить заказ (перечислить наименования и количества блюд).
     func needMoreTips() {
-        var dictOrder: [String: Int] = [:]
         order.forEach { pos in
-            if dictOrder.keys.contains(pos.food.name) {
-                dictOrder[pos.food.name]! += 1
-            } else {
-                dictOrder[pos.food.name] = 1
-            }
-        }
-        dictOrder.forEach { pos in
-            print("Название: \(pos.key) - \(pos.value)шт")
+            print("Название: \(pos.food.name) - \(pos.count)шт")
         }
     }
 //Выставить счёт.
