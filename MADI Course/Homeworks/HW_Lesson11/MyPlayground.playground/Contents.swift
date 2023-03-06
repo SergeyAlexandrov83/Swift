@@ -42,6 +42,7 @@ protocol Employer {
 
 protocol PayListDelegate {
     func addPay(bill: PayBill)
+    func doYourWork()
 }
 
 class Director: Employer {
@@ -59,6 +60,9 @@ class Director: Employer {
     func addPayToList(bill: PayBill) {
         delegate?.addPay(bill: bill)
         }
+    func payBills() {
+        delegate?.doYourWork()
+    }
 }
 
 class MoneyCounter: Employer, PayListDelegate {
@@ -111,7 +115,7 @@ let buh = MoneyCounter(companyName: "GSM", name: "Ghalya", position: "Slave", ba
 director.delegate = buh
 director.addPayToList(bill: pay1)
 director.addPayToList(bill: pay2)
-buh.doYourWork()
+director.payBills()
 
 //3. Создайте класс День со свойствами День недели (перечисление), часы, минуты. Сделайте так, чтобы часы и минуты можно было изменять только в астрономических пределах (0-23 и 0-60 соответственно). Создайте класс Охранник со свойствами имя, 1или2смена (Bool). Охранники должны наблюдать за часами и работать либо в 1 смену (с 8 до 20:00) либо во 2 смену (с 20:00 до 8:00). Создайте класс Клерк со свойством Имя. Клерк должен наблюдать за часами и работать только по будням с 8 утра до 5 вечера. При изменении данных в классе День каждый наблюдатель должен печатать строку вида: «Я охранник Федя. Сейчас работаю»
 
@@ -144,6 +148,11 @@ class Day: Subject {
     var dayOfWeek: week
     var hours: Int
     var mins: Int
+    var time: (day: week, hour: Int, min: Int) = () {
+        willSet {
+            
+        }
+    }
     
     init(dayOfWeek: week, hours: Int, mins: Int) {
         self.dayOfWeek = dayOfWeek
