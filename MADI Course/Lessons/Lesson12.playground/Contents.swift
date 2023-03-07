@@ -268,20 +268,50 @@ struct Queue<Element> {
 }
 
 //Deque
-//container
+struct Deque<Element> {
+    //container
+    private var container = [Element]()
+    
+    //head
+    var head: Element? { container.first }
+    //tail
+    var tail: Element? { container.last }
+    //size
+    var size: Int { container.count }
+    //isEmpty
+    var isEmpty: Bool { container.isEmpty }
+    
+    //addFirst
+    mutating func addFirst(_ element: Element) {
+        container.append(element)
+    }
+    //addLast
+    mutating func addLast(_ element: Element) {
+        container.insert(element, at: 0)
+    }
+    //removeFirst
+    mutating func removeFirst() -> Element? {
+        guard !isEmpty else { return nil }
+        return container.removeFirst()
+    }
+    //removeLast
+    mutating func removeLast() -> Element? {
+        guard !isEmpty else { return nil }
+        return container.removeLast()
+    }
+}
 
-//head
-//tail
-//size
-//isEmpty
 
-//addFirst
-//addLast
-//removeFirst
-//removeLast
-
-
-
+var dequeStack = Deque<Int>()
+dequeStack.isEmpty
+dequeStack.addFirst(10)
+dequeStack.addFirst(20)
+dequeStack.addLast(30)
+dequeStack.size
+dequeStack.head
+dequeStack.tail
+dequeStack.removeFirst()
+dequeStack.removeLast()
 
 
 
