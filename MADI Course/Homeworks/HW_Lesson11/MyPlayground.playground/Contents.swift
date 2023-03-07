@@ -119,39 +119,42 @@ director.payBills()
 
 //3. Создайте класс День со свойствами День недели (перечисление), часы, минуты. Сделайте так, чтобы часы и минуты можно было изменять только в астрономических пределах (0-23 и 0-60 соответственно). Создайте класс Охранник со свойствами имя, 1или2смена (Bool). Охранники должны наблюдать за часами и работать либо в 1 смену (с 8 до 20:00) либо во 2 смену (с 20:00 до 8:00). Создайте класс Клерк со свойством Имя. Клерк должен наблюдать за часами и работать только по будням с 8 утра до 5 вечера. При изменении данных в классе День каждый наблюдатель должен печатать строку вида: «Я охранник Федя. Сейчас работаю»
 
-enum week {
-    case Monday
-    case Tuesday
-    case Wednesday
-    case Thursday
-    case Friday
-    case Saturday
-    case Sunday
-}
-
-//Тип наблюдателя
 protocol Observer {
-    func didGet(newDay: week, newHour: Int, newMins: Int)
+    func didChange(day: Day.week, hour: Int, mins: Int)
 }
 
-//Тип субъекта
 protocol Subject {
     func add(_ observer: Observer)
     func remove(_ observer: Observer)
-    func timeChange(newDay: week, newHour: Int, newMins: Int)
+    func notification()
 }
-
-//Субъект
 
 class Day: Subject {
     var observers = NSMutableSet()
-    var dayOfWeek: week
-    var hours: Int
-    var mins: Int
-    var time: (day: week, hour: Int, min: Int) = () {
-        willSet {
-            
+    var dayOfWeek: week {
+        didSet {
+            self.notification()
         }
+    }
+    var hours: Int {
+        didSet {
+            self.notification()
+        }
+    }
+    var mins: Int {
+        didSet {
+            self.notification()
+        }
+    }
+    
+    enum week {
+        case Monday
+        case Tuesday
+        case Wednesday
+        case Thursday
+        case Friday
+        case Saturday
+        case Sunday
     }
     
     init(dayOfWeek: week, hours: Int, mins: Int) {
@@ -161,15 +164,15 @@ class Day: Subject {
     }
     
     func add(_ observer: Observer) {
-        observers.add(observer)
+        observers.add(observer as! NSObject)
     }
     
     func remove(_ observer: Observer) {
         observers.remove(observer)
     }
     
-    func timeChange(newDay: week, newHour: Int, newMins: Int) {
-        observers.forEach { ($0 as! Observer).didGet(newDay: dayOfWeek, newHour: hours, newMins: mins) }
+    func notification() {
+        observers.forEach { ($0 as! Observer).didChange(day: self.dayOfWeek, hour: self.hours, mins: self.mins) }
     }
 }
 
@@ -183,9 +186,9 @@ class Guard: NSObject, Observer {
         self.isFirstSmena = isFirstSmena
     }
 
-    func didGet(newDay: week, newHour: Int, newMins: Int) {
-        let firstSmenaCond = newHour > 8 && newHour < 20
-        let secondSmenaCond = newHour < 8 && newHour > 20
+    func didChange(day: Day.week, hour: Int, mins: Int) {
+        let firstSmenaCond = hour > 8 && hour < 20
+        let secondSmenaCond = hour < 8 && hour > 20
         if isFirstSmena && firstSmenaCond {
             print("Я охранник \(name). Сейчас работаю в I смену")
         } else if !isFirstSmena && secondSmenaCond {
@@ -203,9 +206,9 @@ class Clerk: NSObject, Observer {
         self.name = name
     }
 
-    func didGet(newDay: week, newHour: Int, newMins: Int) {
-        let dayCond = newDay != .Saturday && newDay != .Sunday
-        let hourCond = newHour > 8 && newHour < 17
+    func didChange(day: Day.week, hour: Int, mins: Int) {
+        let dayCond = day != .Saturday && day != .Sunday
+        let hourCond = hour > 8 && hour < 17
         if dayCond && hourCond {
             print("Я \(name)! И я раскажу вам, что такое рабство!")
         } else {
@@ -220,8 +223,8 @@ var office = Clerk(name: "Masha")
 
 day.add(borodach)
 day.add(office)
-day.timeChange(newDay: .Friday, newHour: 10, newMins: 50)
-day.timeChange(newDay: .Sunday, newHour: 21, newMins: 45)
+day.dayOfWeek = .Sunday
+day.hours = 22
 
 
 
